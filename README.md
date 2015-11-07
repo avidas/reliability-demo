@@ -81,7 +81,7 @@ Check that appium server is still running. Restart may be necessary.
 #### Publish JSON formatted results of behave tests
 
 ```bash
-    export PYTHONPATH=$PYTHONPATH:.; behave --no-capture  -f record --outfile=results.json -f pretty
+    export PYTHONPATH=$PYTHONPATH:.; behave --no-capture  -f record --outfile=data/results.json -f pretty
 ```
 
 ## Storage and Visualization using ElasticSearch and Kibana
@@ -112,6 +112,22 @@ Then check Elasticsearch is running
 
 Then navigate to http://localhost:5601/ in your browser
 
+#### Check out v0.3.0 of the repo
+
+```bash
+    pip install -r requirements.txt
+```
+
 #### Set up Elasticsearch index
+
+```bash
+python db/create_es_index.py
+```
+
+Creates an Elasticsearch Index named `reliability`
+
+
+
+
 
 
