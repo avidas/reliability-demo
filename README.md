@@ -126,6 +126,16 @@ python db/create_es_index.py
 
 Creates an Elasticsearch Index named `reliability`
 
+#### Set up Elasticsearch mapping
+
+```bash
+python db/create_es_mapping.py
+```
+
+Creates an Elasticsearch Mapping named `behave` under the index `reliability`
+
+
+
 
 
 
