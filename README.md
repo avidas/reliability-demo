@@ -4,12 +4,14 @@ Python Reliability Testing Pipeline Demo
 The [packaged ios app](/bin) brings up https://fast-shore-1824.herokuapp.com/ on safari when the launch button is clicked. The web page has a button app-switch with an on click handler. When clicked, it updates broswer with url appiumdemo:// which is an url scheme that the ios app registered so on iOS simulator it will bring back the app.
 
 ### System requirements
--- XCode
--- Node
--- Appium
--- Python and Pip
--- ElasticSearch
--- Kibana
+* XCode
+* Node
+* Appium
+* Python and Pip
+* ElasticSearch
+* Kibana
+* Homebrew (OSX)
+* Java Runtime (for Elasticsearch)
 
 ### Dependencies
 
@@ -24,13 +26,13 @@ The [packaged ios app](/bin) brings up https://fast-shore-1824.herokuapp.com/ on
 
 ## Automate app using appium 
 
--- [Install appium from appium.io](http://appium.io/)
+* [Install appium from appium.io](http://appium.io/)
 
 ###Instructions
 
 #### Start appium server
 ```bash
-appium --help # Check that appium is installed and available in your path
+    appium --help # Check that appium is installed and available in your path
 appium
 ```
 
@@ -79,7 +81,37 @@ Check that appium server is still running. Restart may be necessary.
 #### Publish JSON formatted results of behave tests
 
 ```bash
-   export PYTHONPATH=$PYTHONPATH:.; behave --no-capture  -f record --outfile=results.json -f pretty
+    export PYTHONPATH=$PYTHONPATH:.; behave --no-capture  -f record --outfile=results.json -f pretty
 ```
+
+## Storage and Visualization using ElasticSearch and Kibana
+
+#### Install Elasticsearch
+
+```bash
+    # install via homebrew and check version
+    brew install elasticsearch && brew info elasticsearch
+    # Start Elasticsearch as a service
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
+```
+
+Then check Elasticsearch is running
+
+```bash
+    curl -XGET 'http://localhost:9200'
+```
+
+#### Install Kibana
+
+```bash
+    # install via homebrew and check version
+    brew install kibana && brew info kibana
+    # Start Kibana as a service
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.kibana.plist
+```
+
+Then navigate to http://localhost:5601/ in your browser
+
+#### Set up Elasticsearch index
 
 
