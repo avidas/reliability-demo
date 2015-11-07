@@ -1,7 +1,7 @@
 Python Reliability Testing Pipeline Demo
 ========================================
 
-The [packaged ios app](/bin) brings up https://fast-shore-1824.herokuapp.com/ on safari when the launch button is clicked. The web page has a button app-switch with an on click handler. When clicked, it updates broswer with url appiumdemo:// which is an url scheme that the ios app registered so on iOS simulator it will bring back the app.
+The [packaged iOS app](/bin) brings up https://fast-shore-1824.herokuapp.com/ on safari when the launch button is clicked. The web page has a button app-switch with an on click handler. When clicked, it updates Browser with url appiumdemo:// which is an Url scheme that the ios app registered so on iOS simulator it will bring back the app.
 
 ### System requirements
 * XCode
@@ -24,15 +24,15 @@ The [packaged ios app](/bin) brings up https://fast-shore-1824.herokuapp.com/ on
 3. create a testing environment: `$ mkvitualenv reliability-demo`
 4. Switch to using that environment: `$ workon reliability-demo`
 
-## Automate app using appium 
+## Automate app using Appium 
 
 * [Install appium from appium.io](http://appium.io/)
 
 ###Instructions
 
-#### Start appium server
+#### Start Appium server
 ```bash
-    appium --help # Check that appium is installed and available in your path
+    appium --help # Check that Appium is installed and available in your path
 appium
 ```
 
@@ -70,11 +70,11 @@ Then run the script
     pip install -r requirements.txt
 ```
 
-Check that appium server is still running. Restart may be necessary.
+Check that Appium server is still running. Restart may be necessary.
 
 #### Run behave from the root of the repo
 ```bash
-    behave --help # Check that appium is installed and available in your path
+    behave --help # Check that Appium is installed and available in your path
     behave
 ```
 
@@ -86,16 +86,16 @@ Check that appium server is still running. Restart may be necessary.
 
 ## Storage and Visualization using ElasticSearch and Kibana
 
-#### Install Elasticsearch
+#### Install ElasticSearch
 
 ```bash
-    # install via homebrew and check version
+    # install via Homebrew and check version
     brew install elasticsearch && brew info elasticsearch
-    # Start Elasticsearch as a service
+    # Start ElasticSearch as a service
     launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
 ```
 
-Then check Elasticsearch is running
+Then check ElasticSearch is running
 
 ```bash
     curl -XGET 'http://localhost:9200'
@@ -124,20 +124,23 @@ Then navigate to http://localhost:5601/ in your browser to make sure that Kibana
 python db/create_es_index.py
 ```
 
-Creates an Elasticsearch Index named `reliability`
+Creates an ElasticSearch Index named `reliability`
 
-#### Set up Elasticsearch mapping
+#### Set up ElasticSearch mapping
 
 ```bash
 python db/create_es_mapping.py
 ```
 
-Creates an Elasticsearch Mapping named `behave` under the index `reliability`
+Creates an ElasticSearch Mapping named `behave` under the index `reliability`
 
-#### Publish JSON formatted results of behave tests to Elasticsearch
+#### Publish JSON formatted results of behave tests to ElasticSearch
 
 ```bash
 $ python db/submit_to_es.py 
 ....
 4/4 test results submitted successfully.
 ```
+
+Navigate back to http://localhost:5601/ and click on the discover tag to view the submitted data!
+
