@@ -7,7 +7,7 @@ The [packaged ios app](/bin) brings up https://fast-shore-1824.herokuapp.com/ on
 -- XCode
 -- Node
 -- Appium
--- Python
+-- Python and Pip
 -- ElasticSearch
 -- Kibana
 
@@ -30,6 +30,7 @@ The [packaged ios app](/bin) brings up https://fast-shore-1824.herokuapp.com/ on
 
 #### Start appium server
 ```bash
+appium --help # Check that appium is installed and available in your path
 appium
 ```
 
@@ -52,3 +53,33 @@ Then run the script
 ```bash
     python run.py
 ```
+
+## Describe Tests using Behave
+
+#### Check out v0.2.0 of the repo
+
+```bash
+    git checkout v0.2.0
+```
+
+#### Install requirements
+
+```bash
+    pip install -r requirements.txt
+```
+
+Check that appium server is still running. Restart may be necessary.
+
+#### Run behave from the root of the repo
+```bash
+    behave --help # Check that appium is installed and available in your path
+    behave
+```
+
+#### Publish JSON formatted results of behave tests
+
+```bash
+   export PYTHONPATH=$PYTHONPATH:.; behave --no-capture  -f record --outfile=results.json -f pretty
+```
+
+
