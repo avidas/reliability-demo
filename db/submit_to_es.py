@@ -8,6 +8,7 @@ import subprocess
 import shutil
 from elasticsearch import Elasticsearch
 
+
 def convert_behave_results_to_elastic_format(behaveResults):
     """
     Flatten behave output results for elasticsearch mapping format
@@ -32,16 +33,19 @@ def convert_behave_results_to_elastic_format(behaveResults):
                     if "date" in behaveStep:
                         result["date"] = behaveStep["date"]
                     else:
-                        result["date"] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
+                        result["date"] = datetime.datetime.utcnow().strftime(
+                            '%Y-%m-%dT%H:%M:%S')
                     result["step_number"] = step_number
                     result["status"] = "skipped"
                     if "result" in behaveStep:
                         result["status"] = behaveStep["result"]["status"]
                         if "duration" in behaveStep["result"]:
-                            result["duration"] = behaveStep["result"]["duration"]
+                            result["duration"] = behaveStep[
+                                "result"]["duration"]
                     results.append(result)
                     step_number = step_number + 1
     return results
+
 
 def publish_results(config, results):
     """
@@ -54,7 +58,8 @@ def publish_results(config, results):
 
     for result in results:
         result['feature'] = 'app-switch-demo'
-        r = es.index(index=config["elasticsearch_index"], doc_type=doc_type, body=result)
+        r = es.index(
+            index=config["elasticsearch_index"], doc_type=doc_type, body=result)
         if r["created"]:
             sys.stdout.write('.')
             succeeded = succeeded + 1
@@ -67,8 +72,8 @@ def publish_results(config, results):
 
 if __name__ == '__main__':
     behaveResults = json.load(open('data/results.json'))
-    results = convert_behave_results_to_elastic_format(behaveResults) 
-    config= {
+    results = convert_behave_results_to_elastic_format(behaveResults)
+    config = {
         'elasticsearch_url': 'http://localhost:9200',
         'elasticsearch_index': 'reliability',
         'elasticsearch_mapping': 'behave'
