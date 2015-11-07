@@ -110,7 +110,7 @@ Then check Elasticsearch is running
     launchctl load ~/Library/LaunchAgents/homebrew.mxcl.kibana.plist
 ```
 
-Then navigate to http://localhost:5601/ in your browser
+Then navigate to http://localhost:5601/ in your browser to make sure that Kibana is running.
 
 #### Check out v0.3.0 of the repo
 
@@ -134,10 +134,10 @@ python db/create_es_mapping.py
 
 Creates an Elasticsearch Mapping named `behave` under the index `reliability`
 
+#### Publish JSON formatted results of behave tests to Elasticsearch
 
-
-
-
-
-
-
+```bash
+$ python db/submit_to_es.py 
+....
+4/4 test results submitted successfully.
+```
